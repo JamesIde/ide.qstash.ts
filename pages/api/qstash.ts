@@ -4,12 +4,11 @@ import nodeMailerClient from "@/lib/nodemailerClient";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   await nodeMailerClient().sendMail({
-    from: process.env.SMPT_USERNAME,
-    to: process.env.ADMIN_EMAIL,
-    subject: "This is a test",
-    html: "<p>This email was sent from ide.broker.ts on the back of a message received from Qstash broker.</p>",
+    from: req.body.from,
+    to: req.body.to,
+    subject: req.body.subject,
+    html: req.body.html,
   });
-
   res.status(200).end();
 }
 
