@@ -12,10 +12,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({ ok: true });
 }
 
+// Verifies the JWT signature that comes from the webhook
+export default verifySignature(handler);
+
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-// Verifies the JWT signature that comes from the webhook
-export default verifySignature(handler);
